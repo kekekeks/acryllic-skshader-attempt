@@ -76,9 +76,20 @@ namespace SkiaFiddle
             var compose = SKShader.CreateCompose(tintShader, noiseShader);
             paint.Shader = compose;
             //canvas.Clear(SKColors.Black);
-            canvas.DrawRect(400, 200, 400, 400, paint);
+            canvas.DrawRect(rect, paint);
+            new BoxShadow
+            {
+                Color = SKColors.White,
+                Blur = 2,
+                OffsetX = 1,
+                IsInset = true
+            }.Draw(canvas, new SKRoundRect(rect), 1);
             using (var output = File.Create("out.png"))
                 bmp.Encode(output, SKEncodedImageFormat.Png, 1);
         }
+        
+        
+        
+        
     }
 }
